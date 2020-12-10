@@ -23,9 +23,10 @@ fetch ('https://www.reddit.com/api/v1/access_token', {
 		"Content-Type": "application/x-www-form-urlencoded"
 	},
 	body: {
-		"grant_type": 'authorization_code',
-		"code": authCode,
-		"redirect_uri": 'https://leslieledeboer.github.io/SearchSaved'
+		grant_type=authorization_code
+		&code=authCode
+		&redirect_uri='https://leslieledeboer.github.io/SearchSaved'
+		&client_id=dYnhP5SHz6XIeA
 	}
 })
 .then(response => response.json())

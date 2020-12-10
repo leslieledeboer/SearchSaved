@@ -20,7 +20,8 @@ var authCode = window.location.search.match('code=(.*)')[1];
 fetch ('https://www.reddit.com/api/v1/access_token', {
 	method: 'POST',
 	headers: {
-		"Content-Type": "application/x-www-form-urlencoded"
+		"Content-Type": "application/x-www-form-urlencoded",
+		"Authorization": "Basic " + btoa(dYnhP5SHz6XIeA + ":" + _hFXCuOtrCMbqiQcrWecxXeTdP77lg)
 	},
 	body: {
 		grant_type=authorization_code

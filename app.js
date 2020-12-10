@@ -24,7 +24,7 @@ fetch ('https://www.reddit.com/api/v1/access_token', {
 		"Authorization": "Basic " + btoa("dYnhP5SHz6XIeA:_hFXCuOtrCMbqiQcrWecxXeTdP77lg")
 	},
 	body: {
-		grant_type=authorization_code
+		grant_type='authorization_code'
 		&code=authCode
 		&redirect_uri='https://leslieledeboer.github.io/SearchSaved'
 		&client_id=dYnhP5SHz6XIeA

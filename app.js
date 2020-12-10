@@ -20,7 +20,7 @@ var authCode = window.location.search.match('code=(.*)')[1];
 fetch ('https://www.reddit.com/api/v1/access_token', {
 	method: 'POST',
 	headers: {
-		"Content-Type": "application//x-www-form-urlencoded"
+		"Content-Type": "application/x-www-form-urlencoded"
 	},
 	body: grant_type='authorization_code'&code=authCode&redirect_uri='https://leslieledeboer.github.io/SearchSaved'
 })

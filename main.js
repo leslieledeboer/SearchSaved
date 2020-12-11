@@ -1,16 +1,15 @@
 var code = new URL(window.location.href).searchParams.get('code');
 
-localStorage.setItem("code", code);
-
-var storedCode = localStorage.getItem("code");
-
 if (code !== null) {
   snoowrap.fromAuthCode({
-  code: storedCode,
+  code: code,
   clientId: 'anDof_QS7pjDyw',
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html'
 }).then(r => {
   console.log(r.refreshToken);
+  console.log(r.accessToken);
+  localStorage.setItem("refresh", r.refreshToken);
+  localStorage.setItem("access", r.accessToken);
   r.getMe().getSavedContent().then(listing => {
   	console.log(listing[0].title);
   	console.log(listing[0].permalink);

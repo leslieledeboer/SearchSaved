@@ -16,7 +16,7 @@
 // }
 
 var authenticationUrl = snoowrap.getAuthUrl({
-  clientId: 'dYnhP5SHz6XIeA',
+  clientId: 'anDof_QS7pjDyw',
   scope: ['identity'],
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/',
   permanent: true,
@@ -32,7 +32,7 @@ var code = new URL(window.location.href).searchParams.get('code');
 if (code !== null) {
   snoowrap.fromAuthCode({
   code: code,
-  clientId: 'dYnhP5SHz6XIeA',
+  clientId: 'anDof_QS7pjDyw',
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/'
 }).then(r => {
   // Now we have a requester that can access reddit through the user's account

@@ -1,9 +1,7 @@
-var code = new URL(window.location.href).searchParams.get('code');
-var state = new URL(window.location.href).searchParams.get('state');
+// var code = new URL(window.location.href).searchParams.get('code');
+// var state = new URL(window.location.href).searchParams.get('state');
 
-localStorage.clear();
-
-if (code !== null && state === 'jeff') {
+if (!sessionStorage.getItem("refresh")) {
   snoowrap.fromAuthCode({
   code: code,
   clientId: 'anDof_QS7pjDyw',
@@ -15,7 +13,6 @@ if (code !== null && state === 'jeff') {
   	document.getElementById("title").innerHTML = listing[0].title;
   	document.getElementById("link").innerHTML = listing[0].permalink;
   	document.getElementById("author").innerHTML = listing[0].author.name;
-  	state = 'notjeff';
   });
 }).catch((error) => {
   console.error('Error:', error);

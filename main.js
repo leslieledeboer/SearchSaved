@@ -22,8 +22,8 @@ async function main() {
 	});
   }
 
-  let user = requester.getMe().fetch();
-  let listing = requester.getMe().getSavedContent().fetch();
+  let user = await requester.getMe();
+  let listing = await user.getSavedContent();
 
   document.getElementById("username").innerHTML = user.name;
   document.getElementById("title").innerHTML = listing[0].title;

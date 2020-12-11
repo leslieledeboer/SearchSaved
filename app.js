@@ -6,7 +6,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
 var authenticationUrl = snoowrap.getAuthUrl({
   clientId: 'anDof_QS7pjDyw',
-  scope: ['identity'],
+  scope: ['identity', 'history'],
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/',
   permanent: true,
   state: 'jeff' // a random string, this could be validated when the user is redirected back

@@ -14,7 +14,7 @@ if (code !== null) {
 
   	document.getElementById("title").value = listing[0].title;
   	document.getElementById("link").value = listing[0].permalink;
-  	document.getElementById("author").value = listing[0].author.title;
+  	document.getElementById("author").value = listing[0].author.name;
   });
 }).catch((error) => {
   console.error('Error:', error);

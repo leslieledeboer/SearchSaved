@@ -36,6 +36,8 @@ snoowrap.fromAuthCode({
 }).then(r => {
   // Now we have a requester that can access reddit through the user's account
   console.log("Success!");
+  
+  return true;
     // do something with posts from the front page
 });
 

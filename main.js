@@ -11,6 +11,10 @@ if (code !== null) {
   	console.log(listing[0].permalink);
   	console.log(listing[0].author.name);
   	console.log(listing[0]);
+
+  	document.getElementById("title").value = listing[0].title;
+  	document.getElementById("link").value = listing[0].permalink;
+  	document.getElementById("author").value = listing[0].author.title;
   });
 }).catch((error) => {
   console.error('Error:', error);

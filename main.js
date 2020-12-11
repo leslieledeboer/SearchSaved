@@ -25,11 +25,9 @@ else {
 		refreshToken: sessionStorage.getItem("refresh"),
 		accessToken: sessionStorage.getItem("access")
 	});
-	snoo.then(r => {
-	  r.getMe().getSavedContent().then(listing => {
+	snoo.getMe().getSavedContent().then(listing => {
   	    document.getElementById("title").innerHTML = listing[0].title;
   	    document.getElementById("link").innerHTML = listing[0].permalink;
   	    document.getElementById("author").innerHTML = listing[0].author.name;
 	});
-  });
 }

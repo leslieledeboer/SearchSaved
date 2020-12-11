@@ -24,7 +24,8 @@ else {
 		clientId: 'anDof_QS7pjDyw',
 		refreshToken: sessionStorage.getItem("refresh"),
 		accessToken: sessionStorage.getItem("access")
-	}).then(r => {
+	})
+	snoo.then(r => {
 	  r.getMe().getSavedContent().then(listing => {
   	    document.getElementById("title").innerHTML = listing[0].title;
   	    document.getElementById("link").innerHTML = listing[0].permalink;

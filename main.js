@@ -22,8 +22,8 @@ async function main() {
 	});
   }
 
-  let user = requester.getMe();
-  let listing = requester.getMe().getSavedContent();
+  let user = requester.getMe().fetch();
+  let listing = requester.getMe().getSavedContent().fetch();
 
   document.getElementById("username").innerHTML = user.name;
   document.getElementById("title").innerHTML = listing[0].title;

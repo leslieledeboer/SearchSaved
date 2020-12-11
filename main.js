@@ -1,4 +1,4 @@
-// var code = new URL(window.location.href).searchParams.get('code');
+var code = new URL(window.location.href).searchParams.get('code');
 // var state = new URL(window.location.href).searchParams.get('state');
 
 if (!sessionStorage.getItem("refresh")) {

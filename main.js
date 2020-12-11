@@ -31,9 +31,9 @@ async function main() {
   const container = document.getElementById("post_container");
 
   for (let i = 0; i < posts.length; i++) {
-  	markup += `<a class="post href="https://www.reddit.com/${posts[i].permalink}">
+  	markup += `<a class="post href="https://www.reddit.com/${posts[i].permalink}"></a>
   	  <div class="title">${posts[i].title}</div>
-  	  <div class="author">${posts[i].author.name}</div>`;
+  	  <div class="author">${posts[i].author.name}</div><br><br>`;
   }
 
   //document.getElementById("title").innerHTML = listing[0].title;

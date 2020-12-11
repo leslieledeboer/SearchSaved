@@ -10,6 +10,7 @@ if (code !== null) {
   clientId: 'anDof_QS7pjDyw',
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html'
 }).then(r => {
+  console.log(r.refreshToken);
   r.getMe().getSavedContent().then(listing => {
   	console.log(listing[0].title);
   	console.log(listing[0].permalink);

@@ -15,20 +15,31 @@
 
 // }
 
-var authCode = window.location.search.match('code=(.*)')[1];
+var authenticationUrl = snoowrap.getAuthUrl({
+  clientId: 'dYnhP5SHz6XIeA',
+  scope: ['identity'],
+  redirectUri: 'https://leslieledeboer.github.io/SearchSaved/',
+  permanent: true,
+  state: 'jeff' // a random string, this could be validated when the user is redirected back
+});
+// --> 'https://www.reddit.com/api/v1/authorize?client_id=foobarbaz&response_type=code&state= ...'
 
-fetch ('https://www.reddit.com/api/v1/access_token', {
-	method: 'POST',
-	headers: {
-		"Content-Type": "application/x-www-form-urlencoded",
-		"Authorization": "Basic " + btoa("dYnhP5SHz6XIeA:_hFXCuOtrCMbqiQcrWecxXeTdP77lg")
-	},
-	body: `grant_type=authorization_code&code=${authCode}&redirect_uri=https://leslieledeboer.github.io/SearchSaved/&client_id=dYnhP5SHz6XIeA`
-})
-.then(response => response.json())
-.then(data => {
-	console.log(data.access_token);
-})
-.catch((error) => {
-	console.error('Error:', error);
-})
+document.getElementById("direct").href = authenticationUrl; // send the user to the authentication url
+
+// var authCode = window.location.search.match('code=(.*)')[1];
+
+// fetch ('https://www.reddit.com/api/v1/access_token', {
+// 	method: 'POST',
+// 	headers: {
+// 		"Content-Type": "application/x-www-form-urlencoded",
+// 		"Authorization": "Basic " + btoa("dYnhP5SHz6XIeA:_hFXCuOtrCMbqiQcrWecxXeTdP77lg")
+// 	},
+// 	body: `grant_type=authorization_code&code=${authCode}&redirect_uri=https://leslieledeboer.github.io/SearchSaved/&client_id=dYnhP5SHz6XIeA`
+// })
+// .then(response => response.json())
+// .then(data => {
+// 	console.log(data.access_token);
+// })
+// .catch((error) => {
+// 	console.error('Error:', error);
+// })

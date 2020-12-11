@@ -23,12 +23,24 @@ async function main() {
   }
 
   let user = await requester.getMe();
-  let listing = await user.getSavedContent();
+  let posts = await user.getSavedContent();
+  let markup = ``;
 
   document.getElementById("username").innerHTML = user.name;
-  document.getElementById("title").innerHTML = listing[0].title;
-  document.getElementById("link").innerHTML = listing[0].permalink;
-  document.getElementById("author").innerHTML = listing[0].author.name;
+
+  const container = document.getElementById("post_container");
+
+  for (let i = 0; i < posts.length; i++) {
+  	markup += `<a class="post href="https://www.reddit.com/${posts[i].permalink}">
+  	  <div class="title">${posts[i].title}</div>
+  	  <div class="author">${posts[i].author.name}</div>`;
+  }
+
+  //document.getElementById("title").innerHTML = listing[0].title;
+  //document.getElementById("link").innerHTML = listing[0].permalink;
+  //document.getElementById("author").innerHTML = listing[0].author.name;
+
+  container.insertAdjacentHTML('afterbegin', markup);
 }
 
 main();

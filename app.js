@@ -35,8 +35,10 @@ snoowrap.fromAuthCode({
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/'
 }).then(r => {
   // Now we have a requester that can access reddit through the user's account
-  r.getMe().then(console.log);
+    r.getMe().then(console.log);
     // do something with posts from the front page
+}).catch((error) => {
+	console.error('Error:', error);
 });
 
 // var authCode = window.location.search.match('code=(.*)')[1];

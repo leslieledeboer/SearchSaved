@@ -38,6 +38,7 @@ if (code !== null) {
   // Now we have a requester that can access reddit through the user's account
   r.getMe().then(console.log);
 }).catch((error) => {
+  console.log("Did we get here?");
   console.error('Error:', error);
 });
 }

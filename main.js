@@ -44,10 +44,10 @@ async function main() {
 
 main();
 
-if (document.getElementById('theForm').onsubmit !== null) {
-  let searchTerm = document.getElementById("search").value;
+function myFunction() {
+	let searchTerm = document.getElementById("search").value;
 
-  console.log(searchTerm);
+	console.log(searchTerm);
 }
 
 // var code = new URL(window.location.href).searchParams.get('code');

@@ -26,6 +26,20 @@ var authenticationUrl = snoowrap.getAuthUrl({
 
 document.getElementById("direct").href = authenticationUrl; // send the user to the authentication url
 
+// Get the `code` querystring param (assuming the user was redirected from reddit)
+var code = new URL(window.location.href).searchParams.get('code');
+
+snoowrap.fromAuthCode({
+  code: code,
+  clientId: 'dYnhP5SHz6XIeA',
+  redirectUri: 'https://leslieledeboer.github.io/SearchSaved/'
+}).then(r => {
+  // Now we have a requester that can access reddit through the user's account
+  console.log("Success!");
+    // do something with posts from the front page
+  });
+})
+
 // var authCode = window.location.search.match('code=(.*)')[1];
 
 // fetch ('https://www.reddit.com/api/v1/access_token', {

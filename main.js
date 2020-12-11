@@ -6,8 +6,7 @@ if (code !== null) {
   clientId: 'anDof_QS7pjDyw',
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html'
 }).then(r => {
-  let result = r.getMe().getSavedContent();
-  console.log(result[0].title);
+  r.getMe().getSavedContent().then(console.log);
 }).catch((error) => {
   console.error('Error:', error);
 });

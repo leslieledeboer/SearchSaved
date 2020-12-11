@@ -1,5 +1,5 @@
 var code = new URL(window.location.href).searchParams.get('code');
-var state = new URL(window.location.href).serachParams.get('state');
+var state = new URL(window.location.href).searchParams.get('state');
 
 localStorage.clear();
 

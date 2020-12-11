@@ -25,6 +25,11 @@ async function main() {
   let user = await requester.getMe();
   let posts = await user.getSavedContent();
   let markup = ``;
+  let searchTerm = document.getElementById("search").value;
+
+  if (searchTerm !== null) {
+  	console.log(searchTerm);
+  }
 
   document.getElementById("username").innerHTML = user.name;
 
@@ -35,20 +40,10 @@ async function main() {
   	  <div class="author">${posts[i].author.name}</div><br><br>`;
   }
 
-  //document.getElementById("title").innerHTML = listing[0].title;
-  //document.getElementById("link").innerHTML = listing[0].permalink;
-  //document.getElementById("author").innerHTML = listing[0].author.name;
-
   container.insertAdjacentHTML('afterbegin', markup);
 }
 
 main();
-
-function myFunction() {
-	let searchTerm = document.getElementById("search").value;
-
-	console.log(searchTerm);
-}
 
 // var code = new URL(window.location.href).searchParams.get('code');
 

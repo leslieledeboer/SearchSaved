@@ -33,4 +33,5 @@ else {
   	    document.getElementById("link").innerHTML = listing[0].permalink;
   	    document.getElementById("author").innerHTML = listing[0].author.name;
 	});
+  });
 }

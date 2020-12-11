@@ -8,6 +8,7 @@ if (code !== null) {
 }).then(r => {
   r.getMe().getSavedContent().then(listing => {
   	console.log(listing[0].title);
+  	console.log(listing[0]);
   });
 }).catch((error) => {
   console.error('Error:', error);

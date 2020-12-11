@@ -8,6 +8,8 @@ if (code !== null) {
 }).then(r => {
   r.getMe().getSavedContent().then(listing => {
   	console.log(listing[0].title);
+  	console.log(listing[0].permalink);
+  	console.log(listing[0].author.name);
   	console.log(listing[0]);
   });
 }).catch((error) => {

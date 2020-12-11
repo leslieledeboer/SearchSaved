@@ -6,8 +6,8 @@ if (code !== null) {
   clientId: 'anDof_QS7pjDyw',
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html'
 }).then(r => {
-  // Now we have a requester that can access reddit through the user's account
-  r.getMe().getSavedContent().then(console.log);
+  let result = r.getMe().getSavedContent();
+  console.log(result[0].title);
 }).catch((error) => {
   console.error('Error:', error);
 });

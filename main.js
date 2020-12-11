@@ -24,7 +24,7 @@ else {
 		clientId: 'anDof_QS7pjDyw',
 		refreshToken: sessionStorage.getItem("refresh"),
 		accessToken: sessionStorage.getItem("access")
-	})
+	});
 	snoo.then(r => {
 	  r.getMe().getSavedContent().then(listing => {
   	    document.getElementById("title").innerHTML = listing[0].title;

@@ -12,9 +12,9 @@ if (code !== null) {
   	console.log(listing[0].author.name);
   	console.log(listing[0]);
 
-  	document.getElementById("title").value = listing[0].title;
-  	document.getElementById("link").value = listing[0].permalink;
-  	document.getElementById("author").value = listing[0].author.name;
+  	document.getElementById("title").innerHTML = listing[0].title;
+  	document.getElementById("link").innerHTML = listing[0].permalink;
+  	document.getElementById("author").innerHTML = listing[0].author.name;
   });
 }).catch((error) => {
   console.error('Error:', error);

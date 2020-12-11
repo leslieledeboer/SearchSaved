@@ -29,6 +29,7 @@ async function main() {
 
   if (searchTerm !== null) {
   	console.log(searchTerm);
+  	document.getElementById("debug").innerHTML = "Success!";
   }
 
   document.getElementById("username").innerHTML = user.name;

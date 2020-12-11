@@ -37,8 +37,7 @@ snoowrap.fromAuthCode({
   // Now we have a requester that can access reddit through the user's account
   console.log("Success!");
     // do something with posts from the front page
-  });
-})
+});
 
 // var authCode = window.location.search.match('code=(.*)')[1];
 

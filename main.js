@@ -28,6 +28,10 @@ async function main() {
 
   document.getElementById("username").innerHTML = user.name;
 
+  let searchTerm = document.getElementById("myForm").submit();
+
+  console.log(searchTerm);
+
   const container = document.getElementById("post_container");
 
   for (let i = 0; i < posts.length; i++) {

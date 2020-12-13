@@ -23,8 +23,10 @@ async function main() {
   }
 
   let user = await requester.getMe();
-  let posts = await user.getSavedContent({after: 't3_k3mapf'});
+  let posts = await user.getSavedContent();
   let markup = ``;
+
+  console.log(posts);
 
   document.getElementById("username").innerHTML = user.name;
 

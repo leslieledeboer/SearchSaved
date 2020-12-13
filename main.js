@@ -22,10 +22,10 @@ async function main() {
 	});
   }
 
-  showPosts();
+  showPosts(requester);
 }
 
-async function showPosts() {
+async function showPosts(requester) {
   let user = await requester.getMe();
 
   document.getElementById("username").innerHTML = user.name;

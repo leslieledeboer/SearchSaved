@@ -22,14 +22,14 @@ async function main() {
 	});
   }
 
-  showPosts(requester);
-}
-
-async function showPosts(requester) {
   let user = await requester.getMe();
 
   document.getElementById("username").innerHTML = user.name;
 
+  showPosts(user);
+}
+
+async function showPosts(user) {
   let content = await user.getSavedContent();
   let posts = null;
 

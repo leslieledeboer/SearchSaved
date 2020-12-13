@@ -23,14 +23,8 @@ async function main() {
   }
 
   let user = await requester.getMe();
-  let posts = await user.getSavedContent();
+  let posts = await user.getSavedContent({after: 't3_k3mapf'});
   let markup = ``;
-  let searchTerm = document.getElementById("search").value;
-
-  if (searchTerm !== null) {
-  	console.log(searchTerm);
-  	document.getElementById("debug").innerHTML = searchTerm;
-  }
 
   document.getElementById("username").innerHTML = user.name;
 

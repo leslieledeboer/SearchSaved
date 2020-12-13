@@ -24,13 +24,15 @@ async function main() {
 
   let user = await requester.getMe();
 
-  document.getElementById("username").innerHTML = user.name;
+  document.getElementById("username").innerHTML = user.name;  
 
-  showPosts(user);
+  let userParam = JSON.stringify(user);
+
+  showPosts(userParam);
 }
 
-async function showPosts(user) {
-  let content = await user.getSavedContent();
+async function showPosts(userParam) {
+  let content = await userParam.getSavedContent();
   let posts = null;
 
   if (content.before === null) {

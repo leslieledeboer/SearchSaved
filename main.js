@@ -31,14 +31,15 @@ async function showPosts(requester) {
   document.getElementById("username").innerHTML = user.name;
 
   let content = await user.getSavedContent();
+  let posts = null;
 
   if (content.before === null) {
-    let posts = content;
+    posts = content;
     console.log("first page");
   }
 
   else {
-    let posts = await user.getSavedContent({after: `${content.after}`});
+    posts = await user.getSavedContent({after: `${content.after}`});
     console.log("not first page");
   }
 

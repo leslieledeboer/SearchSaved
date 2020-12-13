@@ -5,7 +5,7 @@ async function main() {
   	var code = new URL(window.location.href).searchParams.get('code');
 
   	requester = await snoowrap.fromAuthCode({
-  		code: code,
+  		  code: code,
         clientId: 'anDof_QS7pjDyw',
         redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html'
   	});
@@ -22,19 +22,33 @@ async function main() {
 	});
   }
 
-  let user = await requester.getMe();
-  let posts = await user.getSavedContent();
-  let markup = ``;
+  showPosts();
+}
 
-  console.log(posts);
+async function showPosts() {
+  let user = await requester.getMe();
 
   document.getElementById("username").innerHTML = user.name;
+
+  let content = await user.getSavedContent();
+
+  if (content.before === null) {
+    let posts = content;
+    console.log("first page");
+  }
+
+  else {
+    let posts = await user.getSavedContent({after: `${content.after}`});
+    console.log("not first page");
+  }
+
+  let markup = ``;
 
   const container = document.getElementById("post_container");
 
   for (let i = 0; i < posts.length; i++) {
-  	markup += `<a class="post" href="https://www.reddit.com/${posts[i].permalink}">${posts[i].title}</a>
-  	  <div class="author">${posts[i].author.name}</div><br><br>`;
+    markup += `<a class="post" href="https://www.reddit.com/${posts[i].permalink}">${posts[i].title}</a>
+      <div class="author">${posts[i].author.name}</div><br><br>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);

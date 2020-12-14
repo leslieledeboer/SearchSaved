@@ -78,7 +78,7 @@ async function searchPosts(user) {
     <div class="author">${allPosts[num].author.name}</div><br><br>`;
   }
 
-  document.getElementById("post_container").innerHTML(markup);
+  await document.getElementById("post_container").innerHTML(markup);
 
   console.log("done!");
 }

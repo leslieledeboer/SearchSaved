@@ -30,7 +30,7 @@ async function main() {
 }
 
 async function showPosts(user) {
-  let content = await user.getSavedContent().before;
+  let content = await user.getSavedContent();
   let posts = null;
 
   console.log(user);

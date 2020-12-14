@@ -22,21 +22,19 @@ async function main() {
 	});
   }
 
-  let user = await requester.getMe();
+  const user = await requester.getMe();
 
-  document.getElementById("username").innerHTML = user.name;  
+  document.getElementById("username").innerHTML = user.name;
 
-  let userParam = JSON.stringify(user);
-
-  showPosts(userParam);
+  showPosts(user);
 }
 
-async function showPosts(userParam) {
-  let content = await userParam.getSavedContent();
+async function showPosts(user) {
+  let content = await user.getSavedContent();
   let posts = null;
 
   if (content.before === null) {
-    posts = content;
+    posts = await ;
     console.log("first page");
   }
 

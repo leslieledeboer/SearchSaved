@@ -36,11 +36,10 @@ async function main() {
 }
 
 async function showPosts(user) {
+  console.log("welcome to show posts");
+
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
-
-  console.log(user);
-  console.log(allPosts);
 
   let markup = ``;
 
@@ -55,15 +54,13 @@ async function showPosts(user) {
 }
 
 async function searchPosts(user) {
+  console.log("welcome to search posts");
+
   let searchValue = await document.getElementById('search').value;
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
   let searchedPosts = allPosts;
-
-  console.log(user);
-  console.log(allPosts);
-  console.log(searchedPosts);
 
   let markup = ``;
 

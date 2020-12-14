@@ -76,7 +76,7 @@ async function searchPosts(user) {
 
   for (let j = 0; j < hits.length; j++) {
     let num = hits[j];
-    post_ontainer.innerHTML += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
+    post_container.innerHTML += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
     <div class="author">${allPosts[num].author.name}</div><br><br>`;
   }
 

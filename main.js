@@ -57,8 +57,8 @@ async function searchPosts(user) {
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
 
-  console.log(allPosts[0].subreddit_name_prefixed);
-  console.log(typeof allPosts[0].subreddit_name_prefixed);
+  console.log(allPosts[0]);
+  console.log(typeof allPosts[0]);
 
   let hits = [];
 

@@ -59,6 +59,7 @@ async function searchPosts(user) {
 
   console.log(searchValue);
   console.log(typeof searchValue);
+  console.log(allPosts[0]);
   console.log(allPosts[0].title);
   console.log(typeof allPosts[0].title);
   console.log(allPosts[0].title.includes(searchValue));

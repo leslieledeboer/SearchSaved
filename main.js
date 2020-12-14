@@ -52,7 +52,7 @@ async function showPosts(user) {
 async function searchPosts(user) {
   console.log("welcome to search posts");
 
-  let searchValue = await document.getElementById('search').value;
+  let searchValue = await document.getElementById('search').value.toLowerCase();
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
@@ -63,7 +63,7 @@ async function searchPosts(user) {
   let hits = [];
 
   for (let i = 0; i < allPosts.length; i++) {
-    if (allPosts[i].subreddit_name_prefixed.includes(searchValue) === true) {
+    if (allPosts[i].subreddit_name_prefixed.toLowerCase().includes(searchValue) === true) {
       hits.push(i);
     }
   }

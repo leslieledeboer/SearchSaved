@@ -26,9 +26,9 @@ async function main() {
 
   document.getElementById("username").innerHTML = user.name;
 
-  showPosts(user);
+  await showPosts(user).catch(console.error);
 
-  document.getElementById('submit').onclick = () => { searchPosts(user); };
+  document.getElementById('submit').onclick = () => { searchPosts(user).catch(console.error); };
 }
 
 async function showPosts(user) {
@@ -57,13 +57,6 @@ async function searchPosts(user) {
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
 
-  console.log(searchValue);
-  console.log(typeof searchValue);
-  console.log(allPosts[0]);
-  console.log(allPosts[0].title);
-  console.log(typeof allPosts[0].title);
-  console.log(allPosts[0].title.includes(searchValue));
-
   let hits = [];
 
   for (let i = 0; i < allPosts.length; i++) {
@@ -85,4 +78,4 @@ async function searchPosts(user) {
   container.insertAdjacentHTML('afterbegin', markup);
 }
 
-main();
+main().catch(console.error);

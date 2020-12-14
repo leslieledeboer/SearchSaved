@@ -34,7 +34,7 @@ async function showPosts(user) {
   let posts = null;
 
   if (content.before === null) {
-    posts = await ;
+    posts = content;
     console.log("first page");
   }
 

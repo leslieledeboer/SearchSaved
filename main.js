@@ -58,8 +58,10 @@ async function searchPosts(user) {
   let allPosts = await posts.fetchAll();
 
   console.log(searchValue);
+  console.log(typeof searchValue);
   console.log(allPosts[0].title);
   console.log(typeof allPosts[0].title);
+  console.log(allPosts[0].title.includes(searchValue));
 
   let hits = [];
 

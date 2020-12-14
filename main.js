@@ -27,16 +27,36 @@ async function main() {
   document.getElementById("username").innerHTML = user.name;
 
   showPosts(user);
+
+  document.getElementById('submit').onclick = searchPosts(user);
 }
 
 async function showPosts(user) {
-  let content = await user.getSavedContent().fetchAll();
-  let posts = null;
+  let posts = await user.getSavedContent().fetchAll();
 
   console.log(user);
-  console.log(content);
+  console.log(posts);
 
-  posts = content;
+  let markup = ``;
+
+  const container = document.getElementById("post_container");
+
+  for (let i = 0; i < posts.length; i++) {
+    markup += `<a class="post" href="https://www.reddit.com/${posts[i].permalink}">${posts[i].title}</a>
+    <div class="author">${posts[i].author.name}</div><br><br>`;
+  }
+
+  container.insertAdjacentHTML('afterbegin', markup);
+}
+
+async function searchPosts(user) {
+  let search = document.getElementById('search').value;
+
+  let posts = await user.getSavedContent().search({query: search});
+
+  console.log(user);
+  console.log(posts);
+  console.log(search);
 
   let markup = ``;
 

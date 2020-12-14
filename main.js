@@ -33,8 +33,8 @@ async function showPosts(user) {
   let content = await user.getSavedContent();
   let posts = null;
 
-  console.log(typeof user);
-  console.log(typeof content);
+  console.log(user);
+  console.log(content);
 
   if (content.before === null) {
     posts = content;

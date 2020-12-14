@@ -70,17 +70,15 @@ async function searchPosts(user) {
 
   console.log(hits);
 
-  var container = document.getElementById("post_container");
-
-  var post_container = document.createElement('div');
+  let markup = ``;
 
   for (let j = 0; j < hits.length; j++) {
     let num = hits[j];
-    post_container.innerHTML += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
+    markup += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
     <div class="author">${allPosts[num].author.name}</div><br><br>`;
   }
 
-  container.parentNode.replaceChild(post_container, container);
+  document.getElementById("post_container").innerHTML(markup);
 
   console.log("done!");
 }

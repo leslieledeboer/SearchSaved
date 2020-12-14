@@ -76,6 +76,8 @@ async function searchPosts(user) {
   }
 
   container.insertAdjacentHTML('afterbegin', markup);
+
+  console.log("done!");
 }
 
 main().catch(console.error);

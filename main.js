@@ -29,8 +29,6 @@ async function main() {
   showPosts(user);
 
   document.getElementById('submit').onclick = () => { searchPosts(user); };
-
-  // document.getElementById('submit').onclick = () => { searchPosts(user).catch(console.error); }
 }
 
 async function showPosts(user) {
@@ -61,13 +59,22 @@ async function searchPosts(user) {
 
   console.log(searchValue);
 
+  let hits = [];
+
+  for (let i = 0; i < allPosts.length; i++) {
+    if (allPosts[i].title.includes(searchValue)) {
+      hits.push(allPosts[i]);
+    }
+  }
+
   let markup = ``;
 
   const container = document.getElementById("post_container");
 
-  for (let i = 1; i < allPosts.length; i++) {
-    markup += `<a class="post" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
-    <div class="author">${allPosts[i].author.name}</div><br><br>`;
+  for (let j = 0; j < hits.length; j++) {
+    let num = hits[j];
+    markup += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
+    <div class="author">${allPosts[num].author.name}</div><br><br>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);

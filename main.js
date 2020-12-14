@@ -64,7 +64,7 @@ async function searchPosts(user) {
   let hits = [];
 
   for (let i = 0; i < allPosts.length; i++) {
-    if (allPosts[i].title.includes(searchValue)) {
+    if (allPosts[i].title.includes(searchValue) === true) {
       hits.push(allPosts[i]);
     }
   }

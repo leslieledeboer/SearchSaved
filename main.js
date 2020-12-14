@@ -64,7 +64,7 @@ async function searchPosts(user) {
 
   for (let i = 0; i < allPosts.length; i++) {
     if (allPosts[i].subreddit_name_prefixed.includes(searchValue) === true) {
-      hits.push(allPosts[i]);
+      hits.push(i);
     }
   }
 

@@ -55,7 +55,7 @@ async function searchPosts(user) {
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
-  let searchedPosts = await allPosts.search({query: searchValue});
+  let searchedPosts = allPosts;
 
   console.log(user);
   console.log(allPosts);

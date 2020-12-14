@@ -50,9 +50,9 @@ async function showPosts(user) {
 }
 
 async function searchPosts(user) {
-  let search = document.getElementById('search').value;
+  let search = await document.getElementById('search').value;
 
-  let posts = await user.getSavedContent().search({query: search});
+  let posts = await user.getSavedContent().fetchAll().search({query: search});
 
   console.log(user);
   console.log(posts);

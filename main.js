@@ -31,11 +31,13 @@ async function main() {
 
 async function showPosts(user) {
   let content = await user.getSavedContent();
+  let stuffs = await content.fetchAll();
   let posts = null;
 
   console.log(user);
   console.log(content);
-  console.log(content(before));
+  console.log(stuffs);
+  console.log(stuffs(before));
   console.log('hello leslie');
 
   if (content.before === null) {

@@ -32,39 +32,42 @@ async function main() {
 }
 
 async function showPosts(user) {
-  let posts = await user.getSavedContent().fetchAll();
+  let posts = await user.getSavedContent();
+  let allPosts = await posts.fetchAll();
 
   console.log(user);
-  console.log(posts);
+  console.log(allPosts);
 
   let markup = ``;
 
   const container = document.getElementById("post_container");
 
-  for (let i = 0; i < posts.length; i++) {
-    markup += `<a class="post" href="https://www.reddit.com/${posts[i].permalink}">${posts[i].title}</a>
-    <div class="author">${posts[i].author.name}</div><br><br>`;
+  for (let i = 0; i < allPosts.length; i++) {
+    markup += `<a class="post" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
+    <div class="author">${allPosts[i].author.name}</div><br><br>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);
 }
 
 async function searchPosts(user) {
-  let search = await document.getElementById('search').value;
+  let searchValue = await document.getElementById('search').value;
 
-  let posts = await user.getSavedContent().fetchAll().search({query: search});
+  let posts = await user.getSavedContent();
+  let allPosts = await posts.fetchAll();
+  let searchedPosts = await allPosts.search({query: searchValue});
 
   console.log(user);
-  console.log(posts);
-  console.log(search);
+  console.log(allPosts);
+  console.log(searchedPosts);
 
   let markup = ``;
 
   const container = document.getElementById("post_container");
 
-  for (let i = 0; i < posts.length; i++) {
-    markup += `<a class="post" href="https://www.reddit.com/${posts[i].permalink}">${posts[i].title}</a>
-    <div class="author">${posts[i].author.name}</div><br><br>`;
+  for (let i = 0; i < searchedPosts.length; i++) {
+    markup += `<a class="post" href="https://www.reddit.com/${searchedPosts[i].permalink}">${searchedPosts[i].title}</a>
+    <div class="author">${searchedPosts[i].author.name}</div><br><br>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);

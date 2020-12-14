@@ -57,9 +57,6 @@ async function searchPosts(user) {
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
 
-  console.log(allPosts[0]);
-  console.log(allPosts[1]);
-
   let hits = [];
 
   for (let i = 0; i < allPosts.length; i++) {

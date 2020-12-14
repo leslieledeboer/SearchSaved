@@ -35,7 +35,7 @@ async function showPosts(user) {
 
   console.log(user);
   console.log(content);
-  console.log(content.query.before);
+  console.log(content.query);
 
   if (content.before === null) {
     posts = content;

@@ -68,6 +68,8 @@ async function searchPosts(user) {
     }
   }
 
+  console.log(hits);
+
   let markup = ``;
 
   const container = document.getElementById("post_container");

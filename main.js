@@ -28,9 +28,7 @@ async function main() {
 
   showPosts(user);
 
-  if (document.getElementById('submit').onclick) {
-    searchPosts(user);
-  }
+  document.getElementById('submit').onclick = () => { searchPosts(user); };
 
   // document.getElementById('submit').onclick = () => { searchPosts(user).catch(console.error); }
 }

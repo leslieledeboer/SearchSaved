@@ -31,7 +31,7 @@ async function main() {
 
 async function showPosts(user) {
   let content = await user.getSavedContent();
-  let before = content[_query];
+  let before = content[query];
   let posts = null;
 
   console.log(user);

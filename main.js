@@ -58,15 +58,16 @@ async function searchPosts(user) {
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
-  let searchedPosts = allPosts;
+
+  console.log(searchValue);
 
   let markup = ``;
 
   const container = document.getElementById("post_container");
 
-  for (let i = 1; i < searchedPosts.length; i++) {
-    markup += `<a class="post" href="https://www.reddit.com/${searchedPosts[i].permalink}">${searchedPosts[i].title}</a>
-    <div class="author">${searchedPosts[i].author.name}</div><br><br>`;
+  for (let i = 1; i < allPosts.length; i++) {
+    markup += `<a class="post" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
+    <div class="author">${allPosts[i].author.name}</div><br><br>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);

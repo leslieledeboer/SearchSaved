@@ -62,8 +62,16 @@ async function searchPosts(user) {
   let hits = [];
 
   for (let i = 0; i < allPosts.length; i++) {
-    if (allPosts[i].subreddit_name_prefixed.toLowerCase().includes(searchValue) || allPosts[i].title.toLowerCase().includes(searchValue) === true) {
+    if (allPosts[i].subreddit_name_prefixed.toLowerCase().includes(searchValue) === true) {
       hits.push(i);
+    }
+
+    if (allPosts[i].title !== undefined) {
+      if (allPosts[i].title.toLowerCase().includes(searchValue) === true) {
+        if (hits.includes(i) === false) {
+          hits.push(i);
+        }
+      }
     }
   }
 

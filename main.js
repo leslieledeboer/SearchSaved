@@ -32,7 +32,7 @@ async function main() {
 }
 
 async function showPosts(user) {
-  console.log("welcome to show posts");
+  console.log("loading posts ...");
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
@@ -47,12 +47,14 @@ async function showPosts(user) {
   }
 
   container.insertAdjacentHTML('afterbegin', markup);
+
+  console.log("done loading posts!");
 }
 
 async function searchPosts(user) {
-  console.log("welcome to search posts");
-
   let searchValue = await document.getElementById('search').value.toLowerCase();
+
+  console.log(`searching for posts with "${searchValue}" ...`);
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
@@ -79,7 +81,7 @@ async function searchPosts(user) {
 
   container.innerHTML = markup;
 
-  console.log("done!");
+  console.log("done searching posts!");
 }
 
 main().catch(console.error);

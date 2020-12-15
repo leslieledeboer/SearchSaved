@@ -13,6 +13,9 @@
 #post_container {
 	width: 1000px;
 	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	flex-direction: column;
 	justify-content: center;
 	border: 2px solid black;
 }

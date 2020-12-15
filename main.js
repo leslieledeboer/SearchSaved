@@ -37,6 +37,8 @@ async function showPosts(user) {
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
 
+  console.log(posts);
+
   let markup = ``;
 
   const container = document.getElementById("post_container");

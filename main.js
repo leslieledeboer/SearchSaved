@@ -43,14 +43,12 @@ async function showPosts(user) {
 
   for (let i = 0; i < allPosts.length; i++) {
     markup += `<a class="post" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
-    <div class="author">${allPosts[i].author.name}</div><br><br>`;
+    <div class="author">${allPosts[i].author.name}</div>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);
 
   document.getElementById("message").innerHTML = "total number of posts: " + allPosts.length;
-
-  console.log("testing");
 }
 
 async function searchPosts(user) {

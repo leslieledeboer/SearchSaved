@@ -3,7 +3,7 @@ var authenticationUrl = snoowrap.getAuthUrl({
   scope: ['identity', 'history', 'read'],
   redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html',
   permanent: true,
-  state: 'jeff'
+  state: 'success'
 });
 
 document.getElementById("redirect").href = authenticationUrl;

@@ -19,3 +19,11 @@
 	justify-content: center;
 	border: 2px solid black;
 }
+
+.post {
+	padding-left: 20px;
+}
+
+.author {
+	padding-left: 20px;
+}

@@ -32,13 +32,10 @@ async function main() {
 }
 
 async function showPosts(user) {
-  console.log("loading posts ...");
   document.getElementById("message").innerHTML = "loading posts ...";
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
-
-  console.log("total number of posts: " + allPosts.length);
 
   let markup = ``;
 
@@ -52,15 +49,12 @@ async function showPosts(user) {
   container.insertAdjacentHTML('afterbegin', markup);
 
   document.getElementById("message").innerHTML = "total number of posts: " + allPosts.length;
-  console.log("done loading posts!");
 }
 
 async function searchPosts(user) {
   let searchValue = await document.getElementById('search').value.toLowerCase();
 
-  console.log(`searching for posts with "${searchValue}" ...`);
-
-  document.getElementById("message").innerHTML = "searching for posts with " + searchValue + " ...";
+  document.getElementById("message").innerHTML = "searching for posts with \"" + searchValue + "\" ...";
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
@@ -81,8 +75,6 @@ async function searchPosts(user) {
     }
   }
 
-  console.log("number of posts found: " + hits.length);
-
   let markup = ``;
 
   for (let j = 0; j < hits.length; j++) {
@@ -95,9 +87,7 @@ async function searchPosts(user) {
 
   container.innerHTML = markup;
 
-  document.getElementById("message").innerHTML = "total number of posts: " + hits.length;
-
-  console.log("done searching posts!");
+  document.getElementById("message").innerHTML = "number of posts found: " + hits.length;
 }
 
 main().catch(console.error);

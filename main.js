@@ -49,6 +49,8 @@ async function showPosts(user) {
   container.insertAdjacentHTML('afterbegin', markup);
 
   document.getElementById("message").innerHTML = "total number of posts: " + allPosts.length;
+
+  console.log("testing");
 }
 
 async function searchPosts(user) {

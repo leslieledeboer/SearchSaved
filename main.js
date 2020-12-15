@@ -77,7 +77,7 @@ async function searchPosts(user) {
     }
   }
 
-  console.log(hits);
+  console.log("number of posts found: " + hits.length);
 
   let markup = ``;
 

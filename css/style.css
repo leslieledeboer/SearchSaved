@@ -21,11 +21,12 @@
 }
 
 .post {
-	padding-top: 50px;
+	padding-top: 25px;
 	padding-left: 50px;
 	padding-right: 50px;
 }
 
 .author {
 	padding-left: 50px;
+	padding-bottom: 25px;
 }

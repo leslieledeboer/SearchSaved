@@ -80,7 +80,7 @@ async function searchPosts(user) {
   for (let j = 0; j < hits.length; j++) {
     let num = hits[j];
     markup += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
-    <div class="author">${allPosts[num].author.name}</div><br>`;
+    <div class="author">${allPosts[num].author.name}</div>`;
   }
 
   let container = document.getElementById("post_container");

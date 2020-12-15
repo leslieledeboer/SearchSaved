@@ -37,7 +37,7 @@ async function showPosts(user) {
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
 
-  console.log(posts);
+  console.log("total number of posts: " + allPosts.length);
 
   let markup = ``;
 

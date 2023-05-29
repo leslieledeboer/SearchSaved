@@ -27,7 +27,7 @@
         
     document.getElementById("redirect").href = authenticationUrl;
 
-    function authenticate() {
+    async function authenticate() {
         let requester = null;
 
         if (sessionStorage.getItem("refresh") == null) {
@@ -47,10 +47,10 @@
             });
         }
 
+        document.getElementById("username").innerHTML = await requester.getMe().name;
+
         document.getElementById("subtitle1").style.display = "none";
         document.getElementById("subtitle2").style.display = "block";
-
-        document.getElementById("username").innerHTML = requester.getMe();
     }
 </script>
 

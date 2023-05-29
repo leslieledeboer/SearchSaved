@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 
-<!-- COMP 484/L Final Project -->
-<!-- SearchSaved for Reddit -->
-<!-- Leslie Ledeboer -->
-
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SearchSaved for Reddit</title>
-  <link href="css/style.css" rel="stylesheet">
+    <title>SearchSaved for Reddit</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-  <div class="content">
-  	<h1>SearchSaved for Reddit</h1>
 
-  	<img src="img/pink_cat_icon.jpg" alt="pink cat icon" class="icon">
+<body style="text-align:center;">
+    <h1>SearchSaved for Reddit</h1>
 
-  	<h3><a href="" id="redirect">Click here to log in</a></h3>
-  </div>
-  <script src="snoowrap-v1.js"></script>
-  
-  <script src="app.js"></script>
+    <div id="subtitle1" onclick="authenticate"><a href="" id="redirect">Click here to log in.</a></div>
+
+    <div id="subtitle2" style="display:none;">Saved content from u/<span id="username"></span></div>
 </body>
+
+<script src="snoowrap-v1.js"></script>
+
+<script>
+    function authenticate() {
+        var authenticationUrl = snoowrap.getAuthUrl({
+            clientId: "anDof_QS7pjDyw",
+            scope: ["identity", "history", "read"],
+            redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
+        });
+        
+        document.getElementById("redirect").href = authenticationUrl;
+
+        if (document.getElementById("redirect").href = authenticationUrl) {
+            document.getElementById("subtitle1").style.display = "none"
+            document.getElementById("subtitle2").style.display = "block"
+        }
+    
+        var code = new URL(window.location.href).searchParams.get("code");
+    
+        var requester = snoowrap.fromAuthCode({
+            code: code,
+            clientId: "anDof_QS7pjDyw",
+            redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
+        });
+    
+        document.getElementById("username").innerHTML = requester.getMe();
+    }
+</script>
+
 </html>

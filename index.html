@@ -11,7 +11,7 @@
 <body style="text-align:center;">
     <h1>SearchSaved for Reddit</h1>
 
-    <div id="subtitle1"><a href="" id="redirect" onclick="authenticate">Click here to log in.</a></div>
+    <div id="subtitle1"><a href="" id="redirect" onclick="authentication">Click here to log in.</a></div>
 
     <div id="subtitle2" style="display:none;">Saved content from u/<span id="username"></span></div>
 </body>
@@ -26,6 +26,10 @@
     });
         
     document.getElementById("redirect").href = authenticationUrl;
+    
+    function authentication() {
+        authenticate().catch(console.error);
+    }
 
     async function authenticate() {
         let requester = null;

@@ -11,7 +11,7 @@
 <body style="text-align:center;">
     <h1>SearchSaved for Reddit</h1>
 
-    <div id="subtitle1" onclick="authenticate"><a href="" id="redirect">Click here to log in.</a></div>
+    <div id="subtitle1"><a href="" id="redirect" onclick="authenticate">Click here to log in.</a></div>
 
     <div id="subtitle2" style="display:none;">Saved content from u/<span id="username"></span></div>
 </body>
@@ -19,28 +19,37 @@
 <script src="snoowrap-v1.js"></script>
 
 <script>
-    function authenticate() {
-        var authenticationUrl = snoowrap.getAuthUrl({
-            clientId: "anDof_QS7pjDyw",
-            scope: ["identity", "history", "read"],
-            redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
-        });
+    var authenticationUrl = snoowrap.getAuthUrl({
+        clientId: "anDof_QS7pjDyw",
+        scope: ["identity", "history", "read"],
+        redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
+    });
         
-        document.getElementById("redirect").href = authenticationUrl;
+    document.getElementById("redirect").href = authenticationUrl;
 
-        if (document.getElementById("redirect").href = authenticationUrl) {
-            document.getElementById("subtitle1").style.display = "none"
-            document.getElementById("subtitle2").style.display = "block"
+    function authenticate() {
+        let requester = null;
+
+        if (sessionStorage.getItem("refresh") == null) {
+            requester = snoowrap.fromAuthCode({
+                code: new URL(location.href).searchParams.get("code"),
+                clientId: "anDof_QS7pjDyw",
+                redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
+            });
+
+            sessionStorage.setItem("refresh", requester.refreshToken);
+            sessionStorage.setItem("access", requester.accessToken);
+        } else {
+            requester = new snoowrap({
+                clientId: "anDof_QS7pjDyw",
+                refreshToken: sessionStorage.getItem("refresh"),
+                accessToken: sessionStorage.getItem("access")
+            });
         }
-    
-        var code = new URL(window.location.href).searchParams.get("code");
-    
-        var requester = snoowrap.fromAuthCode({
-            code: code,
-            clientId: "anDof_QS7pjDyw",
-            redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
-        });
-    
+
+        document.getElementById("subtitle1").style.display = "none";
+        document.getElementById("subtitle2").style.display = "block";
+
         document.getElementById("username").innerHTML = requester.getMe();
     }
 </script>

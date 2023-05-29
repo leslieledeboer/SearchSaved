@@ -30,27 +30,32 @@
     async function authenticate() {
         let requester = null;
 
-        if (sessionStorage.getItem("refresh") == null) {
-            requester = snoowrap.fromAuthCode({
-                code: new URL(location.href).searchParams.get("code"),
-                clientId: "anDof_QS7pjDyw",
-                redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
-            });
+        try {
+            if (sessionStorage.getItem("refresh") == null) {
+                requester = snoowrap.fromAuthCode({
+                    code: new URL(location.href).searchParams.get("code"),
+                    clientId: "anDof_QS7pjDyw",
+                    redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
+                });
 
-            sessionStorage.setItem("refresh", requester.refreshToken);
-            sessionStorage.setItem("access", requester.accessToken);
-        } else {
-            requester = new snoowrap({
-                clientId: "anDof_QS7pjDyw",
-                refreshToken: sessionStorage.getItem("refresh"),
-                accessToken: sessionStorage.getItem("access")
-            });
+                sessionStorage.setItem("refresh", requester.refreshToken);
+                sessionStorage.setItem("access", requester.accessToken);
+            } else {
+                requester = new snoowrap({
+                    clientId: "anDof_QS7pjDyw",
+                    refreshToken: sessionStorage.getItem("refresh"),
+                    accessToken: sessionStorage.getItem("access")
+                });
+            }
+
+            document.getElementById("username").innerHTML = await requester.getMe().name;
+
+            document.getElementById("subtitle1").style.display = "none";
+            document.getElementById("subtitle2").style.display = "block";
+
+        } catch (error) {
+            console.error(error);
         }
-
-        document.getElementById("username").innerHTML = await requester.getMe().name;
-
-        document.getElementById("subtitle1").style.display = "none";
-        document.getElementById("subtitle2").style.display = "block";
     }
 </script>
 

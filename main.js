@@ -32,29 +32,29 @@ async function main() {
 }
 
 async function showPosts(user) {
-  document.getElementById("message").innerHTML = "loading posts ...";
+  document.getElementById("message").innerHTML = "loading saved content ...";
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
 
   let markup = ``;
 
-  const container = document.getElementById("post_container");
+  const container = document.getElementById("content_container");
 
   for (let i = 0; i < allPosts.length; i++) {
-    markup += `<a class="post" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
-    <div class="author">${allPosts[i].author.name}</div>`;
+    markup += `<a class="content_title" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
+    <div class="content_author">${allPosts[i].author.name}</div>`;
   }
 
   container.insertAdjacentHTML('afterbegin', markup);
 
-  document.getElementById("message").innerHTML = "total number of posts: " + allPosts.length;
+  document.getElementById("message").innerHTML = "total number of saved items: " + allPosts.length;
 }
 
 async function searchPosts(user) {
   let searchValue = await document.getElementById('search').value.toLowerCase();
 
-  document.getElementById("message").innerHTML = "searching for posts with \"" + searchValue + "\" ...";
+  document.getElementById("message").innerHTML = "searching for saved content like \"" + searchValue + "\" ...";
 
   let posts = await user.getSavedContent();
   let allPosts = await posts.fetchAll();
@@ -79,11 +79,11 @@ async function searchPosts(user) {
 
   for (let j = 0; j < hits.length; j++) {
     let num = hits[j];
-    markup += `<a class="post" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
-    <div class="author">${allPosts[num].author.name}</div>`;
+    markup += `<a class="content_title" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
+    <div class="content_author">${allPosts[num].author.name}</div>`;
   }
 
-  let container = document.getElementById("post_container");
+  let container = document.getElementById("content_container");
 
   container.innerHTML = markup;
 

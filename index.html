@@ -1,66 +1,26 @@
 <!DOCTYPE html>
 
+<!-- COMP 484/L Final Project -->
+<!-- SearchSaved for Reddit -->
+<!-- Leslie Ledeboer -->
+
 <html lang="en">
-
 <head>
-    <title>SearchSaved for Reddit</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SearchSaved for Reddit</title>
+  <link href="css/style.css" rel="stylesheet">
 </head>
+<body>
+  <div class="content">
+  	<h1>SearchSaved for Reddit</h1>
 
-<body style="text-align:center;">
-    <h1>SearchSaved for Reddit</h1>
+  	<img src="img/pink_cat_icon.jpg" alt="pink cat icon" class="icon">
 
-    <div id="subtitle1"><a href="" id="redirect" onclick="authentication">Click here to log in.</a></div>
-
-    <div id="subtitle2" style="display:none;">Saved content from u/<span id="username"></span></div>
+  	<h3><a href="" id="redirect">Click here to log in</a></h3>
+  </div>
+  <script src="snoowrap-v1.js"></script>
+  
+  <script src="app.js"></script>
 </body>
-
-<script src="snoowrap-v1.js"></script>
-
-<script>
-    var authenticationUrl = snoowrap.getAuthUrl({
-        clientId: "anDof_QS7pjDyw",
-        scope: ["identity", "history", "read"],
-        redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
-    });
-        
-    document.getElementById("redirect").href = authenticationUrl;
-    
-    function authentication() {
-        authenticate().catch(console.error);
-    }
-
-    async function authenticate() {
-        let requester = null;
-
-        try {
-            if (sessionStorage.getItem("refresh") == null) {
-                requester = snoowrap.fromAuthCode({
-                    code: new URL(location.href).searchParams.get("code"),
-                    clientId: "anDof_QS7pjDyw",
-                    redirectUri: "https://leslieledeboer.github.io/SearchSaved/index.html"
-                });
-
-                sessionStorage.setItem("refresh", requester.refreshToken);
-                sessionStorage.setItem("access", requester.accessToken);
-            } else {
-                requester = new snoowrap({
-                    clientId: "anDof_QS7pjDyw",
-                    refreshToken: sessionStorage.getItem("refresh"),
-                    accessToken: sessionStorage.getItem("access")
-                });
-            }
-
-            document.getElementById("username").innerHTML = await requester.getMe().name;
-
-            document.getElementById("subtitle1").style.display = "none";
-            document.getElementById("subtitle2").style.display = "block";
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-</script>
-
 </html>

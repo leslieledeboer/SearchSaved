@@ -42,7 +42,7 @@ async function showPosts(user) {
   const container = document.getElementById("content_container");
 
   for (let i = 0; i < allPosts.length; i++) {
-    markup += `<a class="content_title" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
+    markup += `<p>${allPosts[i].name}</p><a class="content_title" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
     <div class="content_author">${allPosts[i].author.name}</div>`;
   }
 

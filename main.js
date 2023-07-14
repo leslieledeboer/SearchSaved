@@ -2,21 +2,19 @@ async function main() {
   let requester = null;
 
   if (!sessionStorage.getItem("refresh")) {
-  	var code = new URL(window.location.href).searchParams.get('code');
+  	var code = new URL(window.location.href).searchParams.get("code");
 
   	requester = await snoowrap.fromAuthCode({
   		code: code,
-      clientId: 'anDof_QS7pjDyw',
-      redirectUri: 'https://leslieledeboer.github.io/SearchSaved/main.html'
+      clientId: "anDof_QS7pjDyw",
+      redirectUri: "https://leslieledeboer.github.io/SearchSaved/main.html"
   	});
 
   	sessionStorage.setItem("refresh", requester.refreshToken);
     sessionStorage.setItem("access", requester.accessToken);
-  }
-
-  else {
+  } else {
   	requester = new snoowrap({
-		  clientId: 'anDof_QS7pjDyw',
+		  clientId: "anDof_QS7pjDyw",
 		  refreshToken: sessionStorage.getItem("refresh"),
 		  accessToken: sessionStorage.getItem("access")
 	  });
@@ -26,68 +24,57 @@ async function main() {
 
   document.getElementById("username").innerHTML = user.name;
 
-  await showPosts(user).catch(console.error);
+  await showContent(user).catch(console.error);
 
-  document.getElementById('submit').onclick = () => { searchPosts(user).catch(console.error); };
+  document.getElementById("submit").onclick = () => { showContent(user, document.getElementById("search").value.toLowerCase()).catch(console.error); };
 }
 
-async function showPosts(user) {
-  document.getElementById("message").innerHTML = "loading saved content ...";
+async function showContent(user, searchValue) {
+  if (searchValue === undefined) {
+    document.getElementById("message").innerHTML = "loading saved content ...";
+  } else {
+    document.getElementById("message").innerHTML = "searching for saved content like \"" + searchValue + "\" ...";
+  }
 
-  let posts = await user.getSavedContent();
-  let allPosts = await posts.fetchAll();
+  let savedItems = await user.getSavedContent().fetchAll();
+
+  let searchMatch = false;
 
   let markup = ``;
 
-  const container = document.getElementById("content_container");
-
-  for (let i = 0; i < allPosts.length; i++) {
-    markup += `<p>${allPosts[i].name}</p><a class="content_title" href="https://www.reddit.com/${allPosts[i].permalink}">${allPosts[i].title}</a>
-    <div class="content_author">${allPosts[i].author.name}</div>`;
-  }
-
-  container.insertAdjacentHTML('afterbegin', markup);
-
-  document.getElementById("message").innerHTML = "total number of saved items: " + allPosts.length;
-}
-
-async function searchPosts(user) {
-  let searchValue = await document.getElementById('search').value.toLowerCase();
-
-  document.getElementById("message").innerHTML = "searching for saved content like \"" + searchValue + "\" ...";
-
-  let posts = await user.getSavedContent();
-  let allPosts = await posts.fetchAll();
-
-  let hits = [];
-
-  for (let i = 0; i < allPosts.length; i++) {
-    if (allPosts[i].subreddit_name_prefixed.toLowerCase().includes(searchValue) === true) {
-      hits.push(i);
+  for (let i = 0; i < savedItems.length; i++) {
+    searchMatch = false;
+    
+    if (searchValue !== undefined) {
+      if (savedItems[i].subreddit.display_name.toLowerCase().includes(searchValue) === true) {
+        searchMatch = true;
+      } else if (savedItems[i].name.startsWith("t3") === true) {
+        if (savedItems[i].title.toLowerCase().includes(searchValue) === true) {
+          searchMatch = true;
+        }
+      } else {
+        if (savedItems[i].body.toLowerCase().includes(searchValue) === true) {
+          searchMatch = true;
+        }
+      }
     }
 
-    if (allPosts[i].title !== undefined) {
-      if (allPosts[i].title.toLowerCase().includes(searchValue) === true) {
-        if (hits.includes(i) === false) {
-          hits.push(i);
-        }
+    if (searchValue === undefined || searchMatch === true) {
+      if (savedItems[i].name.startsWith("t3") === true) {
+        markup += `<p>Submission from u/${savedItems[i].author.name}<br><a href="https://www.reddit.com/${savedItems[i].permalink}">${savedItems[i].title}</a></p>`;
+      } else {
+        markup += `<p>Comment from u/${savedItems[i].author.name}<br><a href="https://www.reddit.com/${savedItems[i].permalink}">${savedItems[i].body.substring(0, 100)}</a></p>`;
       }
     }
   }
 
-  let markup = ``;
+  document.getElementById("content_container").innerHTML = markup;
 
-  for (let j = 0; j < hits.length; j++) {
-    let num = hits[j];
-    markup += `<a class="content_title" href="https://www.reddit.com/${allPosts[num].permalink}">${allPosts[num].title}</a>
-    <div class="content_author">${allPosts[num].author.name}</div>`;
+  if (searchValue === undefined) {
+    document.getElementById("message").innerHTML = "number of saved items: " + savedItems.length;
+  } else {
+    document.getElementById("message").innerHTML = "number of items found: " + savedItems.length;
   }
-
-  let container = document.getElementById("content_container");
-
-  container.innerHTML = markup;
-
-  document.getElementById("message").innerHTML = "number of posts found: " + hits.length;
 }
 
 main().catch(console.error);

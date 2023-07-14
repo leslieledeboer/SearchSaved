@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <title>SearchSaved for Reddit</title>
     <meta charset="UTF-8">
     <meta name="author" content="Leslie Ledeboer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+      h1, h3, form {
+        text-align: center;
+      }
       #content_container {
         border: 2px solid black;
         display: flex;
@@ -15,19 +18,16 @@
         margin-right: auto;
         width: 80%;
       }
-      .content_title {
+      p {
         padding-top: 25px;
         padding-left: 50px;
         padding-right: 50px;
-      }
-      .content_author {
         padding-bottom: 25px;
-        padding-left: 50px;
       }
     </style>
   </head>
   
-  <body style="text-align: center;">
+  <body>
     <h1>SearchSaved for Reddit</h1>
     <h3>Saved content from u/<span id="username"></span></h3>
     

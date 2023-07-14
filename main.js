@@ -40,6 +40,8 @@ async function showContent(user, searchValue) {
 
   let searchMatch = false;
 
+  let matches = 0;
+
   let markup = ``;
 
   for (let i = 0; i < savedItems.length; i++) {
@@ -48,13 +50,16 @@ async function showContent(user, searchValue) {
     if (searchValue !== undefined) {
       if (savedItems[i].subreddit.display_name.toLowerCase().includes(searchValue) === true) {
         searchMatch = true;
+        matches += 1;
       } else if (savedItems[i].name.startsWith("t3") === true) {
         if (savedItems[i].title.toLowerCase().includes(searchValue) === true) {
           searchMatch = true;
+          matches += 1;
         }
       } else {
         if (savedItems[i].body.toLowerCase().includes(searchValue) === true) {
           searchMatch = true;
+          matches += 1;
         }
       }
     }
@@ -73,7 +78,7 @@ async function showContent(user, searchValue) {
   if (searchValue === undefined) {
     document.getElementById("message").innerHTML = "number of saved items: " + savedItems.length;
   } else {
-    document.getElementById("message").innerHTML = "number of items found: " + savedItems.length;
+    document.getElementById("message").innerHTML = "number of \"" + searchValue + "\" items found: " + matches;
   }
 }
 
